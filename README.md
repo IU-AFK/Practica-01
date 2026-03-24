@@ -1,3 +1,3 @@
-Nombre: Cipolla Lucia
-Legajo: 027843/3
-Carrera: Lic. en Sistemas
+- **Nombre: Cipolla Lucia**
+- **Legajo: 027843/3**
+- **Carrera: Lic. en Sistemas**

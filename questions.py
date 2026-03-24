@@ -1,4 +1,5 @@
 import random
+
 #words = [
 #"python",
 #"programa",
@@ -12,20 +13,29 @@ import random
 
 words = {"rock" : ["intoxicados",
                    "queen",
-                   "evanescence"],
+                   "evanescence",
+                   "kiss",
+                   "radiohead",
+                   "nirvana",
+                   "aerosmith"],
          "pop" : ["rupaul",
                   "abba",
-                  "twice"],
+                  "twice",
+                  "miranda",
+                  "madonna",
+                  "shakira"],
          "musical" : ["heathers",
                       "cabaret",
                       "hairspray",
                       "hamilton",
-                      "chicago"]}
+                      "chicago",
+                      "six",
+                      "rent",
+                      "beetlejuice",
+                      "grease",
+                      "matilda"]}
 
 #word = random.choice(words)
-guessed = []
-attempts = 6
-score = 0
 
 print("¡Bienvenido al Ahorcado!")
 print()
@@ -38,29 +48,39 @@ print()
 genre = input ("Elegí un género: ").lower()
 while genre not in words:
     genre = input ("Género inexistente, por favor ingrese un género: ")
-word = random.choice(words[genre])
+#word = random.choice(words[genre])
 
-while attempts > 0:
+games = random.sample(words[genre],random.randint(1,len(words[genre])))
+#genera una lista con palabras dentro de la categoria elegida. La cantidad de partidas a jugar se randomiza
+#segun el total de elementos de la categoria.
+
+while len(games) > 0:
+    print(f"Partidas restantes: {len(games)}")
+    guessed = []
+    attempts = 6
+    score = 0
+    word = games[0]
+    while attempts > 0:
 # Mostrar progreso: letras adivinadas y guiones para las que faltan
-    progress = ""
-    for letter in word:
+     progress = ""
+     for letter in word:
         if letter in guessed:
             progress += letter + " "
         else:
             progress += "_ "
-    print(progress)
+     print(progress)
 # Verificar si el jugador ya adivinó la palabra completa
-    if "_" not in progress:
+     if "_" not in progress:
         score += 6
         print("¡Ganaste!")
         break
 
-    print(f"Intentos restantes: {attempts}")
-    print(f"Letras usadas: {', '.join(guessed)}")
+     print(f"Intentos restantes: {attempts}")
+     print(f"Letras usadas: {', '.join(guessed)}")
 
-    letter = input("Ingresá una letra: ")
+     letter = input("Ingresá una letra: ")
 
-    if letter.isalpha():
+     if letter.isalpha():
         if letter in guessed:
          print("Ya usaste esa letra.")
         elif letter in word:
@@ -71,13 +91,14 @@ while attempts > 0:
           attempts -= 1
           score -= 1
           print("Esa letra no está en la palabra.")
-    else:
+     else:
        print("Entrada no válida. ")
 
-    print()
+     print()
 
-else:
-    print(f"¡Perdiste! La palabra era: {word}")
-    score = 0   #sobra aca pero se asegura por si se modifica lo demas
+    else:
+     print(f"¡Perdiste! La palabra era: {word}")
+     score = 0   #sobra aca pero se asegura por si se modifica lo demas
 
-print(f"Tu puntaje es: {score} ")
+    print(f"Tu puntaje es: {score} ")
+    del games[0]

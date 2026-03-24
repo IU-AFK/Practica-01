@@ -1,22 +1,44 @@
 import random
-words = [
-"python",
-"programa",
-"variable",
-"funcion",
-"bucle",
-"cadena",
-"entero",
-"lista",
-]
+#words = [
+#"python",
+#"programa",
+#"variable",
+#"funcion",
+#"bucle",
+#"cadena",
+#"entero",
+#"lista",
+#]
 
-word = random.choice(words)
+words = {"rock" : ["intoxicados",
+                   "queen",
+                   "evanescence"],
+         "pop" : ["rupaul",
+                  "abba",
+                  "twice"],
+         "musical" : ["heathers",
+                      "cabaret",
+                      "hairspray",
+                      "hamilton",
+                      "chicago"]}
+
+#word = random.choice(words)
 guessed = []
 attempts = 6
 score = 0
 
 print("¡Bienvenido al Ahorcado!")
 print()
+print("""
+Géneros disponibles:
+    Rock
+    Pop
+    Musical""")
+print()
+genre = input ("Elegí un género: ").lower()
+while genre not in words:
+    genre = input ("Género inexistente, por favor ingrese un género: ")
+word = random.choice(words[genre])
 
 while attempts > 0:
 # Mostrar progreso: letras adivinadas y guiones para las que faltan
